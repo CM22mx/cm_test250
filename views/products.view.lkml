@@ -37,6 +37,25 @@ view: products {
   }
   measure: count {
     type: count
-    drill_fields: [id, item_name, inventory_items.count]
+    #drill_fields: [id, item_name, inventory_items.count]
+    drill_fields: [ct_drill*]
+  }
+
+  set: ct_drill {
+    fields: [
+      products.brand,
+      order_items.sale_price,
+      orders.status,
+      inventory_items.cost,
+      users.age,
+      users.city,
+      users.country,
+      users.gender,
+      users.first_name,
+      users.last_name,
+      users.state,
+      users.zip,
+      order_items.phone
+    ]
   }
 }

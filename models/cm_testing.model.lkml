@@ -137,6 +137,8 @@ explore: orders {
 }
 
 explore: order_items {
+  view_name: order_items
+  label: "Order Items"
   join: orders {
     type: left_outer
     sql_on: ${order_items.order_id} = ${orders.id} ;;
@@ -152,14 +154,29 @@ explore: order_items {
   join: users {
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;
-    relationship: many_to_one
+    #relationship: many_to_one
+    relationship: one_to_one
   }
 
   join: products {
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
-    relationship: many_to_one
+   # relationship: many_to_one
+    relationship: one_to_one
   }
+
+  join: order_items_vijaya {
+    type: left_outer
+    sql_on: ${order_items.order_id} = ${order_items_vijaya.order_id} ;;
+    relationship: one_to_many
+  }
+
+  join: countries {
+    type: left_outer
+    sql_on: ${countries.country} = ${users.country};;
+    relationship: one_to_many
+  }
+
 }
 
 explore: order_items_vijaya {
@@ -321,3 +338,16 @@ explore: xss_test_7 {}
 explore: xss_test_8 {}
 
 explore: xss_test_9 {}
+
+explore: order_items_ext {
+  #persist_with: hireology_default_datagroup
+  extends: [order_items]
+  label: "Order Items Ext"
+
+  always_filter: {filters: [order_items_vijaya.sale_price: ">100"]}
+
+  access_filter: {
+    field: countries.country
+    user_attribute: tps_email
+  }
+}

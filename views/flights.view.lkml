@@ -7,7 +7,7 @@ view: flights {
   }
   dimension_group: arr {
     type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
+    timeframes: [raw, time, date, week, month, quarter, year, fiscal_month_num, fiscal_quarter, fiscal_year]
     sql: ${TABLE}.arr_time ;;
   }
   dimension: cancelled {

@@ -36,6 +36,29 @@ view: order_items {
   }
   measure: count {
     type: count
-    drill_fields: [id, orders.id, inventory_items.id]
+    drill_fields: [ct_drill*]
+  }
+
+  set: ct_drill {
+    fields: [
+      order_items.sale_price,
+      orders.status,
+      order_items_vijaya.count,
+      inventory_items.cost,
+      users.age,
+      users.city,
+      users.country,
+      users.gender,
+      users.first_name,
+      users.last_name,
+      users.state,
+      products.brand,
+      products.category,
+      products.department,
+      products.item_name,
+      products.retail_price,
+      users.zip,
+      order_items.phone
+    ]
   }
 }
