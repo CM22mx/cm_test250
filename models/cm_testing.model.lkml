@@ -2,6 +2,7 @@ connection: "thelook"
 
 # include all the views
 include: "/views/**/*.view.lkml"
+fiscal_month_offset: 3
 
 datagroup: cm_testing_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
