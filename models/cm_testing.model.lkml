@@ -137,8 +137,14 @@ explore: orders {
 }
 
 explore: order_items {
+
   view_name: order_items
   label: "Order Items"
+
+  conditionally_filter: {
+    filters: [order_items.returned_year: "2016"]
+  }
+
   join: orders {
     type: left_outer
     sql_on: ${order_items.order_id} = ${orders.id} ;;
